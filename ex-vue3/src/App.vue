@@ -4,8 +4,10 @@ import SideBar from './components/layouts/SideBar.vue'
 </script>
 
 <template>
-  <the-view></the-view>
-  <side-bar />
+  <div>
+    <the-view></the-view>
+    <side-bar></side-bar>
+  </div>
 </template>
 
 <style scoped></style>
