@@ -38,10 +38,10 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <RouterLink class="nav-link" active-class="active" to="/clim">
               <svg class="bi" style="width: 1rem; height: 10rem"><use xlink:href="#people" /></svg>
               클라임관리
-            </a>
+            </RouterLink>
           </li>
         </ul>
       </div>
@@ -66,5 +66,4 @@
   background-color: #f8f9fa; /* 배경색 지정 */
   padding-top: 20px; /* 상단 여백 조절 */
 }
-
 </style>
