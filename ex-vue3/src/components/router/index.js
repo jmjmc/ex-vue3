@@ -9,6 +9,7 @@ const routes = [
     },
     {
         path: '/about',
+        name: 'AboutView',
         component: AboutView,
     },
 ];

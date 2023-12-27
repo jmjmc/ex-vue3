@@ -1,12 +1,14 @@
 <script setup>
-import TheView from './components/layouts/HeaderBar.vue'
+import HeaderBar from './components/layouts/HeaderBar.vue'
 import SideBar from './components/layouts/SideBar.vue'
+import TheView from './components/layouts/TheView.vue'
 </script>
 
 <template>
   <div>
-    <the-view></the-view>
+    <header-bar></header-bar>
     <side-bar></side-bar>
+    <the-view></the-view>
   </div>
 </template>
 

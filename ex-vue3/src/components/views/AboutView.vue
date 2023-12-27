@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h2>AboutView</h2>
+    <h2><span class="text-a">AboutView</span></h2>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

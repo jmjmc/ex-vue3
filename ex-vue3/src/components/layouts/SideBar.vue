@@ -24,10 +24,10 @@
             배송관리
             <ul class="nav flex-column ml-3">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <RouterLink class="nav-link" active-class="active" to="/about">
                   <svg class="bi" style="width: 1rem; height: 5rem"><use xlink:href="#cart" /></svg>
                   배송처리
-                </a>
+                </RouterLink>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -66,6 +66,5 @@
   background-color: #f8f9fa; /* 배경색 지정 */
   padding-top: 20px; /* 상단 여백 조절 */
 }
-.bi {
-}
+
 </style>
