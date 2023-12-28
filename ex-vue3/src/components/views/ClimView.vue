@@ -1,20 +1,31 @@
 <template>
   <div>
-    <h2><span class="text-a">Clim</span></h2>
-    <input v-model="prefix" placeholder="Filter prefix" />
+    <h2><span class="text-a">Clim 작성</span></h2>
+    <div class="input-group mb-1">
+      <span class="input-group-text">검색</span>
+      <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" v-model="prefix" placeholder="Filter prefix">
+    </div>
 
-    <select size="5" v-model="selected">
+    <select class="form-select" multiple aria-label="Multiple select example" size="5" v-model="selected">
       <option v-for="name in filteredNames" :key="name">
         {{ name }}
       </option>
     </select>
 
-    <label>Name: <input v-model="first" /></label>
-    <label>Surname: <input v-model="last" /></label>
+
+    <a class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">작성자</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" v-model="first" placeholder="name@example.com">
+    </a>
+    <a class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" v-model="last" rows="3"></textarea>
+    </a>
+
     <a class="buttons">
-      <button @click="create">Create</button>
-      <button @click="update">Update</button>
-      <button @click="del">Delete</button>
+      <button type="button" class="btn btn-primary" @click="create">입력</button>
+      <button type="button" class="btn btn-primary" @click="update">수정</button>
+      <button type="button" class="btn btn-primary" @click="del">삭제</button>
     </a>
   </div>
 </template>
@@ -22,8 +33,8 @@
 <script setup>
 import { ref, reactive, computed, watch } from 'vue'
 // 외부로 데이터를 보낼 때 export 쓴다. script setup은 내부에서만 사용한다.
-const names = reactive(['Emil,Hans', 'Mustermann, Max', 'Tisch, Roman'])
-const selected = ref('')
+const names = reactive(['Emil, 회원관리', 'Mustermann, 주문관리', 'Tisch, 배송관리'])
+const selected = ref([])
 const prefix = ref('')
 const first = ref('')
 const last = ref('')
@@ -32,13 +43,20 @@ const filteredNames = computed(() =>
   names.filter((n) => n.toLowerCase().startsWith(prefix.value.toLowerCase()))
 )
 
-watch(selected, (name) => {
-  ;[last.value, first.value] = name.split(',')
+watch(selected, (selectedValues) => {
+  if (selectedValues.length === 1) {
+    const [firstName, lastName] = selectedValues[0].split(',')
+    first.value = firstName.trim()
+    last.value = lastName.trim()
+  } else {
+    first.value = last.value = ''
+  }
 })
+
 
 function create() {
   if (hasValidInput()) {
-    const fullName = `${last.value}, ${first.value}`
+    const fullName = `${first.value}, ${last.value}`
     if (!names.includes(fullName)) {
       names.push(fullName)
       first.value = last.value = ''
@@ -47,9 +65,14 @@ function create() {
 }
 
 function update() {
-  if (hasValidInput() && selected.value) {
-    const i = names.indexOf(selected.value)
-    names[i] = selected.value = `${last.value}, ${first.value}`
+  if (hasValidInput() && selected.value.length === 1) {
+    const index = names.indexOf(selected.value[0])
+    if (index !== -1) {
+      names[index] = `${first.value}, ${last.value}`
+      // 선택된 값과 first, last 초기화
+      selected.value = []
+      first.value = last.value = ''
+    }
   }
 }
 
@@ -85,5 +108,15 @@ select {
 
 button + button {
   margin-left: 5px;
+}
+
+.form-label {
+  width: 600px;
+}
+.form-select{
+  width: 600px;
+}
+.form-control{
+  width: 600px;
 }
 </style>
