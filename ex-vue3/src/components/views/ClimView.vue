@@ -49,9 +49,9 @@
       <button type="button" class="btn btn-primary" @click="update">수정</button>
       <button type="button" class="btn btn-primary" @click="del">삭제</button>
     </a>
-    <a class="storebuttons">
+    <!-- <a class="storebuttons">
       <button type="button" class="btn btn-success">글쓰기(store)</button>
-    </a>
+    </a> -->
   </div>
 </template>
 
